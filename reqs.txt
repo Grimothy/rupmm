@@ -1,0 +1,10 @@
+Linux Bits
+npm init -y
+npm install express body-parser axios
+
+Python Bits
+sudo apt update
+sudo apt install python3 python3-pip
+pip3 install arrapi
+cd /path/to/your/script
+python3 LeavingSoon.py
