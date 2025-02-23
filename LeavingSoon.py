@@ -1,6 +1,6 @@
-import os 
-from datetime import datetime, timedelta 
-from arrapi import RadarrAPI 
+import os
+from datetime import datetime, timedelta
+from arrapi import RadarrAPI
 
 # Radarr API details
 radarr_url = "https://radarr.bearald.com"
@@ -46,7 +46,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.7) 75%, rgba(0, 0, 0, 0.9));
     pointer-events: none; /* Allow clicks to pass through the overlay */
     z-index: 1; /* Place the overlay on top */
 }
@@ -55,8 +55,9 @@ h1 {
     font-size: 3em;
     color: #333333;  /* Updated to dark gray */
     font-family: 'Playwrite DE Grund', cursive;
-    background: linear-gradient(135deg, #f3ec78, #af4261);
+    background: linear-gradient(135deg, #f39c12, #8e44ad);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
     transition: transform 0.3s ease-in-out;
     position: relative;
@@ -82,7 +83,7 @@ h1:hover {
     padding: 0;
 }
 .movie-item {
-    background-color: rgba(255, 255, 255, 0.55); /* Increased transparency */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker and more transparent */
     border-radius: 10px;
     margin: 20px;
     width: 300px;
@@ -102,7 +103,7 @@ h1:hover {
 }
 .movie-title {
     font-size: 2em;
-    color: #333; /* Remove gradient and set to a solid color */
+    color: #fff; /* Set to white for better contrast */
     margin: 10px 0;
     font-family: 'Montserrat', sans-serif;
 }
@@ -114,7 +115,7 @@ h1:hover {
 }
 .movie-details {
     font-size: 1.5em; /* Adjusted size to be 25% smaller than the title */
-    color: #333; /* Matched color to the title */
+    color: #fff; /* Set to white for better contrast */
     font-family: 'Montserrat', sans-serif;
     font-weight: bold; /* Made the text bolder */
 }

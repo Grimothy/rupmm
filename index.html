@@ -23,12 +23,21 @@
             background: rgba(0, 0, 0, 0.5);
         }
         .content {
-            background: rgba(255, 255, 255, 0.4); /* More transparent */
+            background: rgba(255, 255, 255, 0.2); /* More transparent */
             padding: 30px 40px;
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             text-align: center;
             backdrop-filter: blur(10px); /* Blur effect */
+            animation: bob 9s infinite; /* Add animation */
+        }
+        @keyframes bob {
+            0%, 10% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
         h1 {
             margin: 0;
@@ -89,7 +98,7 @@
 <body>
     <div class="container">
         <div class="content">
-            <h1>Welcome Back</h1>
+            <h1>Rup Media Manager</h1>
             <p>Sign in to continue</p>
             <form id="loginForm">
                 <input type="text" id="username" placeholder="Username" required>
