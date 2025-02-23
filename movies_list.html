@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie List</title>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 0%;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1));
+    pointer-events: none; /* Allow clicks to pass through the overlay */
+    z-index: 1; /* Place the overlay on top */
+}
+h1 {
+    text-align: center;
+    font-size: 3em;
+    color: #333333;  /* Updated to dark gray */
+    font-family: 'Playwrite DE Grund', cursive;
+    background: linear-gradient(135deg, #f3ec78, #af4261);
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    z-index: 2; /* Ensure the title is above the overlay */
+}
+h1:hover {
+    transform: scale(1.1);
+}
+.subheading {
+    text-align: center;
+    font-size: 1.2em;
+    color: #FFFFFF; /* Light font color for better visibility */
+    font-family: 'Playwrite DE Grund', cursive;
+    margin-top: -10px; /* Adjust the margin as needed */
+    position: relative;
+    z-index: 2; /* Ensure the subheading is above the overlay */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Added subtle drop shadow for better contrast */
+}
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0;
+}
+.movie-item {
+    background-color: rgba(255, 255, 255, 0.55); /* Increased transparency */
+    border-radius: 10px;
+    margin: 20px;
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.5s, box-shadow 0.5s, filter 1.5s; /* Added filter transition */
+    position: relative;
+    z-index: 2; /* Ensure the movie items are above the overlay */
+}
+.movie-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
+}
+.movie-item.blurred {
+    filter: blur(1px); /* Reduced blur effect */
+    transition: filter 1.5s; /* Slow down the blur effect */
+}
+.movie-title {
+    font-size: 2em;
+    color: #333; /* Remove gradient and set to a solid color */
+    margin: 10px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+.movie-img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+.movie-details {
+    font-size: 1.5em; /* Adjusted size to be 25% smaller than the title */
+    color: #333; /* Matched color to the title */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold; /* Made the text bolder */
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const movieItems = document.querySelectorAll(".movie-item");
+    
+    movieItems.forEach(item => {
+        item.addEventListener("mouseover", function() {
+            movieItems.forEach(mi => {
+                if (mi !== item) {
+                    mi.classList.add("blurred");
+                } else {
+                    mi.classList.remove("blurred");
+                }
+            });
+        });
+
+        item.addEventListener("mouseout", function() {
+            movieItems.forEach(mi => {
+                mi.classList.remove("blurred");
+            });
+        });
+    });
+});
+document.addEventListener("scroll", function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrollPercent = scrollTop / docHeight;
+    let bgPosition = Math.round(scrollPercent * 100);
+    document.body.style.backgroundPosition = `50% ${bgPosition}%`;
+});
+</script>
+</head>
+<body>
+<h1>Leaving Soon</h1>
+<p class="subheading">Let's keep this operation going! Please vote to keep the media that may be expiring but you want to watch later.</p>
+<div class="movie-list">
+
+    <div class="movie-item">
+        <h2 class="movie-title">1917</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/354/poster.jpg?lastWrite=638697783327782426" alt="1917">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">A Quiet Place</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/358/poster.jpg?lastWrite=638697783327862426" alt="A Quiet Place">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">A Scanner Darkly</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/359/poster.jpg?lastWrite=638697783326942420" alt="A Scanner Darkly">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Blade Runner 2049</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/367/poster.jpg?lastWrite=638733293843548856" alt="Blade Runner 2049">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Blood Diamond</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/368/poster.jpg?lastWrite=638697783350822571" alt="Blood Diamond">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Children of Men</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/372/poster.jpg?lastWrite=638697783395182851" alt="Children of Men">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Civil War</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/373/poster.jpg?lastWrite=638697783395782855" alt="Civil War">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Deadpool</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/377/poster.jpg?lastWrite=638697783429823070" alt="Deadpool">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Dune: Part Two</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/383/poster.jpg?lastWrite=638699179872308035" alt="Dune: Part Two">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Dune</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/384/poster.jpg?lastWrite=638697783452063211" alt="Dune">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Dunkirk</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/385/poster.jpg?lastWrite=638697783452143211" alt="Dunkirk">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Edward Scissorhands</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/387/poster.jpg?lastWrite=638704769547874821" alt="Edward Scissorhands">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Elysium</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/388/poster.jpg?lastWrite=638735022573456396" alt="Elysium">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Hamburger Hill</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/402/poster.jpg?lastWrite=638728972093906212" alt="Hamburger Hill">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Inside Out 2</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/409/poster.jpg?lastWrite=638705633998407637" alt="Inside Out 2">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Joker: Folie à Deux</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/414/poster.jpg?lastWrite=638728972133946428" alt="Joker: Folie à Deux">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Kick-Ass</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/415/poster.jpg?lastWrite=638712549264073513" alt="Kick-Ass">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Kick-Ass 2</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/416/poster.jpg?lastWrite=638699821955167103" alt="Kick-Ass 2">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Minions</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/423/poster.jpg?lastWrite=638723786089860184" alt="Minions">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Office Space</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/428/poster.jpg?lastWrite=638697783688024701" alt="Office Space">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Oppenheimer</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/429/poster.jpg?lastWrite=638697783691824725" alt="Oppenheimer">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Silver Linings Playbook</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/444/poster.jpg?lastWrite=638699822079367906" alt="Silver Linings Playbook">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Talladega Nights: The Ballad of Ricky Bobby</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/449/poster.jpg?lastWrite=638752309687756147" alt="Talladega Nights: The Ballad of Ricky Bobby">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Grinch</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/458/poster.jpg?lastWrite=638736751295862741" alt="The Grinch">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Iron Giant</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/460/poster.jpg?lastWrite=638697783855025756" alt="The Iron Giant">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Perks of Being a Wallflower</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/464/poster.jpg?lastWrite=638699822026407564" alt="The Perks of Being a Wallflower">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Road</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/465/poster.jpg?lastWrite=638697783905426074" alt="The Road">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Wild Robot</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/467/poster.jpg?lastWrite=638748852317832204" alt="The Wild Robot">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Notebook</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/480/poster.jpg?lastWrite=638709956057902550" alt="The Notebook">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Patriot</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/481/poster.jpg?lastWrite=638697784051186995" alt="The Patriot">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Village</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/485/poster.jpg?lastWrite=638707362860672225" alt="The Village">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Transformers One</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/492/poster.jpg?lastWrite=638704769649355436" alt="Transformers One">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Venom: The Last Dance</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/497/poster.jpg?lastWrite=638751445390319574" alt="Venom: The Last Dance">
+        <div class="movie-details">Originally Added: December 14 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">What We Do in the Shadows</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/510/poster.jpg?lastWrite=638700820621132614" alt="What We Do in the Shadows">
+        <div class="movie-details">Originally Added: December 18 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Robot Jox</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/511/poster.jpg?lastWrite=638743666158781404" alt="Robot Jox">
+        <div class="movie-details">Originally Added: December 18 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Red One</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/512/poster.jpg?lastWrite=638701663582976390" alt="Red One">
+        <div class="movie-details">Originally Added: December 19 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Elemental</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/513/poster.jpg?lastWrite=638701667304700443" alt="Elemental">
+        <div class="movie-details">Originally Added: December 19 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Inside Out</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/514/poster.jpg?lastWrite=638741937468393129" alt="Inside Out">
+        <div class="movie-details">Originally Added: December 19 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Polar Express</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/516/poster.jpg?lastWrite=638744530540034344" alt="The Polar Express">
+        <div class="movie-details">Originally Added: December 19 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">National Lampoon's Christmas Vacation</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/517/poster.jpg?lastWrite=638707362822152004" alt="National Lampoon's Christmas Vacation">
+        <div class="movie-details">Originally Added: December 19 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Home Alone 2: Lost in New York</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/518/poster.jpg?lastWrite=638701722856061472" alt="Home Alone 2: Lost in New York">
+        <div class="movie-details">Originally Added: December 19 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">We Live in Time</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/519/poster.jpg?lastWrite=638728107828999781" alt="We Live in Time">
+        <div class="movie-details">Originally Added: December 19 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Last Kingdom: Seven Kings Must Die</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/521/poster.jpg?lastWrite=638702366668422919" alt="The Last Kingdom: Seven Kings Must Die">
+        <div class="movie-details">Originally Added: December 19 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Gladiator II</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/522/poster.jpg?lastWrite=638703327864593549" alt="Gladiator II">
+        <div class="movie-details">Originally Added: December 20 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Gladiator</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/524/poster.jpg?lastWrite=638703871297201668" alt="Gladiator">
+        <div class="movie-details">Originally Added: December 21 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Kraven the Hunter</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/525/poster.jpg?lastWrite=638752309616555799" alt="Kraven the Hunter">
+        <div class="movie-details">Originally Added: December 23 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Carry-On</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/526/poster.jpg?lastWrite=638705109758764251" alt="Carry-On">
+        <div class="movie-details">Originally Added: December 23 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Home Alone</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/527/poster.jpg?lastWrite=638706395053947138" alt="Home Alone">
+        <div class="movie-details">Originally Added: December 24 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">Furiosa: A Mad Max Saga</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/528/poster.jpg?lastWrite=638715142238112150" alt="Furiosa: A Mad Max Saga">
+        <div class="movie-details">Originally Added: December 24 2024</div>
+    </div>
+    
+    <div class="movie-item">
+        <h2 class="movie-title">The Order</h2>
+        <img class="movie-img" src="https://radarr.bearald.com/radarr/MediaCover/529/poster.jpg?lastWrite=638750580897549016" alt="The Order">
+        <div class="movie-details">Originally Added: December 24 2024</div>
+    </div>
+    
+</div>
+</body>
+</html>
