@@ -1,15 +1,13 @@
+// filepath: /var/www/html/rupmm/proxy-server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const cors = require('cors'); // Import the cors package
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
-app.use(cors()); // Enable CORS
+app.use(cors());
 app.use(bodyParser.json());
-
-// Handle preflight requests
-app.options('/login', cors());
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -26,7 +24,7 @@ app.post('/login', async (req, res) => {
             headers: {
                 'Content-Type': 'application/json',
                 'X-Emby-Authorization': `MediaBrowser Client="YourAppName", Device="YourDeviceName", DeviceId="YourDeviceId", Version="1.0.0.0"`,
-                'X-Emby-Token': apiKey // Add the API key here
+                'X-Emby-Token': apiKey
             }
         });
 
@@ -44,5 +42,5 @@ app.post('/login', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Proxy server running at http://localhost:${port}`);
 });

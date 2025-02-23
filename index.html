@@ -23,13 +23,13 @@
             background: rgba(0, 0, 0, 0.5);
         }
         .content {
-            background: rgba(255, 255, 255, 0.2); /* More transparent */
+            background: rgba(255, 255, 255, 0.2);
             padding: 30px 40px;
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(10px); /* Blur effect */
-            animation: bob 9s infinite; /* Add animation */
+            backdrop-filter: blur(10px);
+            animation: bob 9s infinite;
         }
         @keyframes bob {
             0%, 10% {
@@ -53,9 +53,9 @@
         }
         p {
             margin: 15px 0;
-            color: #34143a; /* Match the color with the login padding */
+            color: #34143a;
             font-size: 1.1em;
-            font-weight: 600; /* Make the text bolder */
+            font-weight: 600;
         }
         form {
             display: flex;
@@ -82,7 +82,7 @@
             width: 100%;
             border: none;
             border-radius: 8px;
-            background: linear-gradient(135deg, #34143a, #221a3a); /* Updated gradient colors */
+            background: linear-gradient(135deg, #34143a, #221a3a);
             color: #fff;
             font-size: 1.1em;
             font-weight: 600;
@@ -91,7 +91,7 @@
         }
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(34, 20, 58, 0.3); /* Updated shadow color */
+            box-shadow: 0 5px 15px rgba(34, 20, 58, 0.3);
         }
     </style>
 </head>
@@ -125,7 +125,7 @@
                 if (data.success) {
                     // Authentication successful
                     console.log('Login successful:', data);
-                    // Redirect or perform other actions
+                    window.location.href = 'dashboard.html'; // Redirect to dashboard
                 } else {
                     // Authentication failed
                     console.error('Login failed:', data);
