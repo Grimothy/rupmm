@@ -175,8 +175,9 @@ html_content += """
 </html>
 """
 
-# Save the HTML content to a file
-html_file_path = "movies_list.html"
+# Save the HTML content to a file in the current directory
+current_directory = os.getcwd()
+html_file_path = os.path.join(current_directory, "movies_list.html")
 with open(html_file_path, 'w') as html_file:
     html_file.write(html_content)
 
