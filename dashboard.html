@@ -17,7 +17,7 @@
         }
         .container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
@@ -30,6 +30,8 @@
             text-align: center;
             backdrop-filter: blur(10px);
             animation: bob 9s infinite;
+            transition: opacity 1s ease-out;
+            margin-bottom: 20px;
         }
         @keyframes bob {
             0%, 10% {
@@ -39,7 +41,7 @@
                 transform: translateY(-10px);
             }
         }
-        h1 {
+        h1, h2 {
             margin: 0;
             font-size: 2.5em;
             background: linear-gradient(135deg, #f39c12, #8e44ad);
@@ -48,7 +50,7 @@
             color: transparent;
             transition: transform 0.3s ease;
         }
-        h1:hover {
+        h1:hover, h2:hover {
             transform: scale(1.05);
         }
         p {
@@ -57,14 +59,66 @@
             font-size: 1.1em;
             font-weight: 600;
         }
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #34143a, #221a3a);
+            color: #fff;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .logout-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(34, 20, 58, 0.3);
+        }
+        .section {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            width: 80%;
+        }
     </style>
 </head>
 <body>
+    <button class="logout-button" onclick="logout()">Logout</button>
     <div class="container">
-        <div class="content">
+        <div class="content" id="welcomeContent">
             <h1>Welcome to Rup Media Manager</h1>
             <p>You are now logged in.</p>
         </div>
+        <div class="section" id="latestMovies">
+            <h2>Latest Movies</h2>
+            <p>Content for latest movies will go here.</p>
+        </div>
+        <div class="section" id="latestTVShows">
+            <h2>Latest TV Shows</h2>
+            <p>Content for latest TV shows will go here.</p>
+        </div>
+        <div class="section" id="leavingSoon">
+            <h2>Leaving Soon</h2>
+            <p>Content for leaving soon will go here.</p>
+        </div>
     </div>
+    <script>
+        function logout() {
+            // Perform any necessary cleanup here (e.g., clearing tokens)
+            window.location.href = 'index.html'; // Redirect to login page
+        }
+
+        // Fade out the welcome content after 2 seconds
+        setTimeout(() => {
+            document.getElementById('welcomeContent').style.opacity = '0';
+        }, 2000);
+    </script>
 </body>
 </html>
