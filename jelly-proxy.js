@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -37,6 +37,20 @@ app.post('/login', async (req, res) => {
     } catch (error) {
         console.error('Error connecting to Emby server:', error.message);
         res.status(500).json({ success: false, message: 'An error occurred. We seem to be having issues connecting to the backend API. Please try again later.', error: error.message });
+    }
+});
+
+// Proxy endpoint for the external API
+app.get('/api/v1/discover/trending', async (req, res) => {
+    const { page, language } = req.query;
+    const apiUrl = `https://r1.bearald.com/api/v1/discover/trending?page=${page}&language=${language}`;
+
+    try {
+        const response = await axios.get(apiUrl);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching data from external API:', error.message);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching data from the external API.', error: error.message });
     }
 });
 

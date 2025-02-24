@@ -19,27 +19,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center; /* Center the elements vertically */
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-        }
-        .content {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 30px 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            backdrop-filter: blur(10px);
-            animation: bob 9s infinite;
-            transition: opacity 1s ease-out;
-            margin-bottom: 20px;
-        }
-        @keyframes bob {
-            0%, 10% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
         }
         h1, h2 {
             margin: 0;
@@ -86,22 +68,53 @@
             backdrop-filter: blur(10px);
             margin-bottom: 20px;
             width: 80%;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 1s ease-in;
+        }
+        .glow {
+            animation: glow 1s ease-in-out;
+        }
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        li img {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
     <button class="logout-button" onclick="logout()">Logout</button>
     <div class="container">
-        <div class="content" id="welcomeContent">
-            <h1>Welcome to Rup Media Manager</h1>
-            <p>You are now logged in.</p>
+        <div class="section" id="trendingMovies">
+            <h2>Trending Movies</h2>
+            <ul id="trendingMoviesList">
+                <!-- Trending movies will be inserted here -->
+            </ul>
+        </div>
+        <div class="section" id="trendingTVShows">
+            <h2>Trending TV Shows</h2>
+            <p>Content for trending TV shows will go here.</p>
         </div>
         <div class="section" id="latestMovies">
-            <h2>Latest Movies</h2>
+            <h2>Latest Movies on Emby</h2>
             <p>Content for latest movies will go here.</p>
         </div>
         <div class="section" id="latestTVShows">
-            <h2>Latest TV Shows</h2>
+            <h2>Latest TV Shows on Emby</h2>
             <p>Content for latest TV shows will go here.</p>
         </div>
         <div class="section" id="leavingSoon">
@@ -115,10 +128,45 @@
             window.location.href = 'index.html'; // Redirect to login page
         }
 
-        // Fade out the welcome content after 2 seconds
+        // Fade in the sections one by one and add glow effect
         setTimeout(() => {
-            document.getElementById('welcomeContent').style.opacity = '0';
-        }, 2000);
+            const trendingMovies = document.getElementById('trendingMovies');
+            trendingMovies.style.opacity = '1';
+            trendingMovies.classList.add('glow');
+            setTimeout(() => trendingMovies.classList.remove('glow'), 1000);
+            fetchTrendingMovies(); // Fetch trending movies after the section fades in
+        }, 500); // 0.5 second delay
+
+        setTimeout(() => {
+            const trendingTVShows = document.getElementById('trendingTVShows');
+            trendingTVShows.style.opacity = '1';
+            trendingTVShows.classList.add('glow');
+            setTimeout(() => trendingTVShows.classList.remove('glow'), 1000);
+        }, 1000); // 1 second delay
+
+        setTimeout(() => {
+            const latestMovies = document.getElementById('latestMovies');
+            latestMovies.style.opacity = '1';
+            latestMovies.classList.add('glow');
+            setTimeout(() => latestMovies.classList.remove('glow'), 1000);
+        }, 1500); // 1.5 seconds delay
+
+        setTimeout(() => {
+            const latestTVShows = document.getElementById('latestTVShows');
+            latestTVShows.style.opacity = '1';
+            latestTVShows.classList.add('glow');
+            setTimeout(() => latestTVShows.classList.remove('glow'), 1000);
+        }, 2000); // 2 seconds delay
+
+        setTimeout(() => {
+            const leavingSoon = document.getElementById('leavingSoon');
+            leavingSoon.style.opacity = '1';
+            leavingSoon.classList.add('glow');
+            setTimeout(() => leavingSoon.classList.remove('glow'), 1000);
+        }, 2500); // 2.5 seconds delay
+    </script>
+    <script type="module">
+        import { fetchTrendingMovies } from './jelly-proxy.js';
     </script>
 </body>
 </html>
