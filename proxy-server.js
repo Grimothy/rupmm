@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = 3000; // or 3001, depending on your setup
 
 app.use(cors({
     origin: 'https://rupmm.bearald.com', // Allow requests from your web server
