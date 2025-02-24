@@ -16,9 +16,7 @@ app.use(bodyParser.json());
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const embyUrl = 'https://rupemby.bearald.com';
-    const apiKey = '509eef1199bc456a9e9ba04a46212f04'; // Replace with your actual API key
-
-    console.log('Received login request:', { username, password });
+    const apiKey = '509eef1199bc456a9e9ba04a46212f04'; // Your actual API key
 
     try {
         const response = await axios.post(`${embyUrl}/Users/AuthenticateByName`, {
@@ -32,8 +30,6 @@ app.post('/login', async (req, res) => {
             }
         });
 
-        console.log('Emby server response:', response.data);
-
         if (response.data.AccessToken) {
             res.json({ success: true, data: response.data });
         } else {
@@ -41,7 +37,7 @@ app.post('/login', async (req, res) => {
         }
     } catch (error) {
         console.error('Error connecting to Emby server:', error.message);
-        res.status(500).json({ success: false, message: 'An error occurred. We seem to be having issues connecting to the backend API. Please try again later.', error: error.message });
+        res.status(500).json({ success: false, message: 'An error occurred. Please try again later.' });
     }
 });
 
