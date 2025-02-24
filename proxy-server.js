@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const embyUrl = 'https://rupemby.bearald.com';
-    const apiKey = '509eef1199bc456a9e9ba04a46212f04'; // Your actual API key
+    const apiKey = '509eef1199bc456a9e9ba04a46212f04'; // You r actual API key
 
     try {
         const response = await axios.post(`${embyUrl}/Users/AuthenticateByName`, {
