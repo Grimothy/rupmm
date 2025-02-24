@@ -5,7 +5,12 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://rupmm.bearald.com', // Allow requests from your web server
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
+}));
 app.use(bodyParser.json());
 
 app.post('/login', async (req, res) => {
