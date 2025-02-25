@@ -107,25 +107,37 @@
             </form>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Set your predefined username and password here
-            const predefinedUsername = 'rup';
-            const predefinedPassword = 'ruppas';
+            // Hash the input password
+            const hashedPassword = CryptoJS.SHA256(password).toString();
 
-            if (username === predefinedUsername && password === predefinedPassword) {
-                // Authentication successful
-                console.log('Login successful');
-                window.location.href = 'welcome.html'; // Redirect to welcome page
-            } else {
-                // Authentication failed
-                console.error('Login failed');
-                alert('Login failed. Please check your username and password.');
-            }
+            // Fetch predefined username and hashed password from a secure source
+            fetch('/credentials.json')
+                .then(response => response.json())
+                .then(data => {
+                    const predefinedUsername = data.username;
+                    const predefinedHashedPassword = data.hashedPassword;
+
+                    if (username === predefinedUsername && hashedPassword === predefinedHashedPassword) {
+                        // Authentication successful
+                        console.log('Login successful');
+                        window.location.href = 'welcome.html'; // Redirect to welcome page
+                    } else {
+                        // Authentication failed
+                        console.error('Login failed');
+                        alert('Login failed. Please check your username and password.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching credentials:', error);
+                    alert('An error occurred. Username or Password may be incorrect.');
+                });
         });
     </script>
 </body>
